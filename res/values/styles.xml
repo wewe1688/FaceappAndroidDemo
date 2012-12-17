@@ -1,0 +1,20 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+    <style name="list_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawSelectorOnTop">false</item>
+        <item name="android:scrollingCache">true</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:listSelector">@null</item>
+        <item name="android:cacheColorHint">#0000</item>
+        <item name="android:dividerHeight">2dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">3dp</item>
+    </style>
+    
+</resources>
