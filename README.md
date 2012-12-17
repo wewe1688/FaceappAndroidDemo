@@ -8,5 +8,5 @@
  * 1.Group的创建/删除
  * 2.Person的创建/删除
  * 3.User的创建/删除
- * 4.图片上传的拍照/Picker选择
- * 5.才用Gson解析Json.  
+ * 4.图片选取添加拍照/Picker的选择
+ * 5.使用Gson解析Json.  
