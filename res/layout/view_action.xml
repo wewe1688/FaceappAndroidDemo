@@ -4,22 +4,20 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-
-     <TextView android:id="@+id/name"
+    <TextView android:id="@+id/name"
      android:layout_width="fill_parent" android:layout_height="wrap_content" />
-    
-    <include layout="@layout/component_listview"/>
+	<include layout="@layout/component_listview"/>
 	<LinearLayout android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 	    <Button android:id="@+id/create" android:layout_width="0dp"
-	        android:layout_height="wrap_content" android:text="@string/btn_face_create"
+	        android:layout_height="wrap_content" android:text="@string/btn_create"
 	        android:layout_weight="1"/>
 	    <Button android:id="@+id/delete" android:layout_width="0dp"
-	        android:layout_height="wrap_content" android:text="@string/btn_face_delete"
+	        android:layout_height="wrap_content" android:text="@string/btn_delete"
 	        android:layout_weight="1" android:layout_marginLeft="5dp"/>
 		<Button android:id="@+id/edit" android:layout_width="0dp"
-	        android:layout_height="wrap_content" android:text="@string/btn_face_edit"
+	        android:layout_height="wrap_content" android:text="@string/btn_edit"
 	        android:layout_weight="1" android:layout_marginLeft="5dp"/>	    
 	</LinearLayout>
 </LinearLayout>

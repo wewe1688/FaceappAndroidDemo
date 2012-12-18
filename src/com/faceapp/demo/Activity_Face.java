@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * Face列表
+ * 根据FaceID,返回Face信息.
  * @author Will
  */
 public class Activity_Face extends BaseActivity implements OnItemClickListener  {
@@ -67,8 +67,7 @@ public class Activity_Face extends BaseActivity implements OnItemClickListener  
     }
     
     /**
-     * 获取脸信息.
-     * 和图片ID
+     * 获取脸信息.和图片ID
      */
     HttpTask.NetRequestListener getFaceListener = new HttpTask.NetRequestListener() {
 		@Override
@@ -100,30 +99,6 @@ public class Activity_Face extends BaseActivity implements OnItemClickListener  
 		}
 	};
 	
-    /**
-     * 根据图片ID获取图片信息.
-     */
-    HttpTask.NetRequestListener getImageListener = new HttpTask.NetRequestListener() {
-		@Override
-		public Object onRequest() {
-			return null;
-		}
-		@Override
-		public void onPreRequest() {
-		}
-		public void onError(String response) {};
-		@Override
-		public void onComplete(String response) {
-        	resultView.setText(response);
-        	Return_FaceInfo mResult ;
-        	try {
-        		mResult = new Gson().fromJson(response.trim(),new TypeToken<Return_FaceInfo>() {}.getType());
-			} catch (Exception e) {
-				ToolHelper.toast(mContext, getString(R.string.hint_data_error));
-			}
-		}
-	};
-
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {

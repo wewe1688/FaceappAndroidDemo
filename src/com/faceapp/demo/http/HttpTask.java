@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,7 +29,7 @@ public class HttpTask extends AsyncTask<String, Void, String> {
 	private String loadingStr ;
 	private Dialog loadingDialog ;
 	
-	private final String TAG = this.getClass().getSimpleName();
+	public final String TAG = this.getClass().getSimpleName();
 	
 	/**
 	 * 上传文件
@@ -56,7 +55,6 @@ public class HttpTask extends AsyncTask<String, Void, String> {
 	
 	@Override
 	protected void onPreExecute() {
-		Log.i(TAG, "onPreExecute-");
 		if(!ToolHelper.isConnectivity(mContext)){
 			ToolHelper.toast(mContext, "没有网络");
 			cancel(true);

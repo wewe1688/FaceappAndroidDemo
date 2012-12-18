@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -180,39 +181,6 @@ public class FileHelper {
 
 	/**
 	 * 保存图片
-	 * 
-	 * @param bitName
-	 * @param mBitmap
-	 * @throws IOException
-	 */
-	public static void saveHeadPhoto(String url, Bitmap mBitmap)
-			throws IOException {
-		String fileName = getWeiboPicName(url);
-		String filePath = getPicturePath() + fileName + HEADSUFFIX;
-		if (!(new File(filePath)).exists()) {
-			FileOutputStream fOut = null;
-			try {
-				fOut = new FileOutputStream(filePath);
-				mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-				try {
-					fOut.flush();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				try {
-					fOut.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-		} else {
-		}
-	}
-	
-	/**
-	 * 保存图片
 	 * @param bitName
 	 * @param mBitmap
 	 * @throws IOException
@@ -268,12 +236,6 @@ public class FileHelper {
 		return file.exists() ? true : false;
 	}
 
-
-
-	public static String getWeiboPicName(String url) {
-		return url.substring(url.lastIndexOf("50/") + 3, url.lastIndexOf("/"));
-	}
-
 	/**
 	 * 生成时间图片名
 	 */
@@ -303,33 +265,33 @@ public class FileHelper {
 	}
 	
 	/**
-	 * 保存相应JSON作为缓存
-	 * @param filename
-	 * @param str
+	 * 下载图片
+	 * @param url
+	 * @param path
+	 * @return
+	 * @throws IOException
 	 */
-	public static void savaCacheFile(String filename ,String str){
-		String filePath = getPicturePath() + filename;
-		File dir = new File(getPicturePath());
-		if (!dir.exists())
-			dir.mkdir();
-		
-		FileWriter fileWriter = null ;
-		try {
-			fileWriter = new FileWriter(new File(filePath) , false);
-			fileWriter.write(str);
-			try {
-				fileWriter.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				fileWriter.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+	public static Boolean downloadFile(String url , String path , String fileName) throws IOException{
+		URL u = new URL(url);
+		HttpURLConnection c = (HttpURLConnection) u.openConnection();
+		c.setRequestMethod("GET");
+		c.setDoOutput(true);
+		c.connect();
+		try{
+			(new File(path)).mkdirs();
+		}catch (Exception e){//Catch exception if any
+			return false;
 		}
+		FileOutputStream f = new FileOutputStream(new File(path + fileName));
+		InputStream in = c.getInputStream();
+
+		byte[] buffer = new byte[1024];
+		int lenght = 0;
+		while ( (lenght = in.read(buffer)) > 0 ) {
+			f.write(buffer,0, lenght);
+		}
+		f.close();
+		return true;
 	}
 	
 }

@@ -1,6 +1,6 @@
 package com.faceapp.demo.object;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IBase<T> {
     
@@ -8,5 +8,5 @@ public interface IBase<T> {
     
     public String getID();
     
-    public ArrayList<T> getArray();
+    public List<T> getArray();
 }

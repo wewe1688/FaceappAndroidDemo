@@ -1,36 +1,29 @@
 package com.faceapp.demo;
 
-import java.util.ArrayList;
-
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.faceapp.demo.http.FacePlusAPI;
 import com.faceapp.demo.http.HttpManager;
 import com.faceapp.demo.http.HttpParameters;
 import com.faceapp.demo.http.HttpTask;
-import com.faceapp.demo.object.Return_FaceInfo;
+import com.faceapp.demo.object.Image;
 import com.faceapp.demo.util.ToolHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * Face列表
+ * 获取一张image的信息, 包括其中包含的face等信息
  * @author Will
  */
-public class Activity_Image extends BaseActivity implements OnItemClickListener  {
+public class Activity_Image extends BaseActivity   {
 	
 	private String Img_ID ;
 	private TextView resultView ;
-	
-	private ListView mListView;
-	private ArrayList<String> mImageIDs;
-	private ArrayAdapter<String> mImageAdapter;
+	private ImageView mImageView;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,16 +37,11 @@ public class Activity_Image extends BaseActivity implements OnItemClickListener 
         if(!ToolHelper.isEmpty(Img_ID)){
         	onRefresh();
         }
-        
-        setContentView(R.layout.view_face);
+        setContentView(R.layout.view_image);
         resultView = (TextView)findViewById(R.id.name);
         
-        mListView = (ListView)findViewById(R.id.listview);
-        mListView.setOnItemClickListener(this);
-        mImageIDs = new ArrayList<String>();
-        mImageAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, mImageIDs);
-		mListView.setAdapter(mImageAdapter);
-
+        mImageView = (ImageView)findViewById(R.id.image);
+        
     	super.initView();
     }
     
@@ -80,20 +68,14 @@ public class Activity_Image extends BaseActivity implements OnItemClickListener 
 		@Override
 		public void onComplete(String response) {
         	resultView.setText(response);
-        	Return_FaceInfo mResult ;
+        	Image mResult ;
         	try {
-        		mResult = new Gson().fromJson(response.trim(),new TypeToken<Return_FaceInfo>() {}.getType());
+        		mResult = new Gson().fromJson(response.trim(),new TypeToken<Image>() {}.getType());
 			} catch (Exception e) {
-				ToolHelper.toast(mContext, getString(R.string.hint_data_error));
+				Log.i(TAG, e.toString());
+				ToolHelper.toast(mContext, getString(R.string.hint_data_error) + e.toString());
 			}
 		}
 	};
-
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

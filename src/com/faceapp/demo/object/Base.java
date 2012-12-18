@@ -1,6 +1,6 @@
 package com.faceapp.demo.object;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Base<T> implements IBase<T>{
 
@@ -15,7 +15,7 @@ public class Base<T> implements IBase<T>{
     }
 
     @Override
-    public ArrayList<T> getArray() {
+    public List<T> getArray() {
 	return null;
     }
     

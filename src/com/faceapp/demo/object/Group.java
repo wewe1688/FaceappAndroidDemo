@@ -1,6 +1,7 @@
 package com.faceapp.demo.object;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Group<T> extends Base<T> {
     public String group_id;
@@ -9,7 +10,7 @@ public class Group<T> extends Base<T> {
 
     public String group_name;
 
-    public ArrayList<T> person;
+    public List<T> person;
     
     @Override
     public String getID() {
@@ -22,7 +23,7 @@ public class Group<T> extends Base<T> {
     }
     
     @Override
-    public ArrayList<T> getArray() {
+    public List<T> getArray() {
         return person;
     }
     

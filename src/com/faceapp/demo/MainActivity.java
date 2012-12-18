@@ -1,5 +1,7 @@
 package com.faceapp.demo;
 
+import com.faceapp.demo.http.FacePlusAPI;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,7 +44,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			startActivity(mIntent1);
 			break;
 		case R.id.button2:
-			Intent mIntent2 = new Intent(this , Activity_Group.class);
+			Intent mIntent2 = new Intent(this , Activity_GroupList.class);
+			mIntent2.putExtra(FacePlusAPI.Type, FacePlusAPI.Type_Group);
 			startActivity(mIntent2);
 			break;
 		}

@@ -80,10 +80,11 @@ public class FacePlusAPI {
 	
 	public static final String GROUP_NAME = "group_name";
 	
-	public static int Type_Img = 0 ;
-	public static int Type_Face = 1 ;
-	public static int Type_Person = 2 ;
-	public static int Type_Group = 3 ;
+	public static final String Type = "type" ;
+	public static final int Type_Img = 0 ;
+	public static final int Type_Face = 1 ;
+	public static final int Type_Person = 2 ;
+	public static final int Type_Group = 3 ;
 	
 	
 	

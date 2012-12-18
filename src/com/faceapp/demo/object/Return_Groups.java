@@ -1,7 +1,7 @@
 package com.faceapp.demo.object;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Return_Groups {
-    public ArrayList<Group> group ;
+    public List<Group> group ;
 }
